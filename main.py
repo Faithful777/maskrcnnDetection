@@ -1,17 +1,20 @@
+import torch
+import utils
+
 from PennFudanDataset import *
 from model import *
 from transform import *
 from engine import train_one_epoch, evaluate
 
-import torch
+
 # train on the GPU or on the CPU, if a GPU is not available
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 # our dataset has two classes only - background and person
 num_classes = 2
 # use our dataset and defined transformations
-dataset = PennFudanDataset('data/PennFudanPed', get_transform(train=True))
-dataset_test = PennFudanDataset('data/PennFudanPed', get_transform(train=False))
+dataset = PennFudanDataset('/content/maskrcnnDetection/PennFudanPed', get_transform(train=True))
+dataset_test = PennFudanDataset('/content/maskrcnnDetection/PennFudanPed', get_transform(train=False))
 
 # split the dataset in train and test set
 indices = torch.randperm(len(dataset)).tolist()

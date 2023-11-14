@@ -1,3 +1,4 @@
+import torch
 from torchvision.transforms import v2 as T
 
 # helper function for data augmentation / transformation
